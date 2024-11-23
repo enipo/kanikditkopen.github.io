@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kan Ik Dit Kopen?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      text-align: center;
+    }
+    .question, .result {
+      margin: 20px auto;
+      max-width: 500px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007BFF;
+      color: white;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Kan Ik Dit Kopen?</h1>
+  <div id="app" class="question">
+    <p id="question">Heb je dit echt nodig?</p>
+    <button onclick="answer('yes')">Ja</button>
+    <button onclick="answer('no')">Nee</button>
+  </div>
+
+  <script>
+    const questions = [
+      { 
+        text: "Heb je dit echt nodig?",
+        yes: 1,
+        no: "Misschien kun je dit overslaan."
+      },
+      { 
+        text: "Kun je hetzelfde resultaat bereiken zonder deze aankoop?",
+        yes: "Bekijk eerst die andere opties.",
+        no: 2
+      },
+      { 
+        text: "Heb je hier de ruimte/geld/tijd voor?",
+        yes: 3,
+        no: "Het klinkt als een risico. Denk er goed over na."
+      },
+      { 
+        text: "Hoe voel je je bij deze aankoop over een week?",
+        yes: "Klinkt als een bewuste keuze. Succes!",
+        no: "Geef het nog een paar dagen. Misschien verandert je gevoel."
+      }
+    ];
+
+    let currentQuestion = 0;
+
+    function answer(choice) {
+      const current = questions[currentQuestion];
+      if (typeof current[choice] === "string") {
+        showResult(current[choice]);
+      } else {
+        currentQuestion = current[choice];
+        showQuestion();
+      }
+    }
+
+    function showQuestion() {
+      const questionElement = document.getElementById("question");
+      questionElement.textContent = questions[currentQuestion].text;
+    }
+
+    function showResult(result) {
+      const app = document.getElementById("app");
+      app.innerHTML = `<div class="result"><p>${result}</p></div>`;
+    }
+  </script>
+</body>
+</html>
