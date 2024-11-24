@@ -7,15 +7,31 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
-      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
-    .question, .result {
-      margin: 20px auto;
-      max-width: 500px;
+    .container {
+      text-align: center;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 400px;
       padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
+    }
+    h1 {
+      font-size: 24px;
+      color: #333;
+    }
+    p {
+      font-size: 18px;
+      color: #555;
+      margin: 20px 0;
     }
     button {
       padding: 10px 20px;
@@ -24,20 +40,36 @@
       cursor: pointer;
       border: none;
       border-radius: 5px;
-      background-color: #007BFF;
+      width: 40%;
+    }
+    button.yes {
+      background-color: #4CAF50;
       color: white;
     }
-    button:hover {
-      background-color: #0056b3;
+    button.yes:hover {
+      background-color: #45a049;
+    }
+    button.no {
+      background-color: #f44336;
+      color: white;
+    }
+    button.no:hover {
+      background-color: #e53935;
+    }
+    .result {
+      color: #333;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h1>Kan Ik Dit Kopen?</h1>
-  <div id="app" class="question">
-    <p id="question">Heb je dit echt nodig?</p>
-    <button onclick="answer('yes')">Ja</button>
-    <button onclick="answer('no')">Nee</button>
+  <div class="container">
+    <h1>Kan Ik Dit Kopen?</h1>
+    <div id="app">
+      <p id="question">Heb je dit echt nodig?</p>
+      <button class="yes" onclick="answer('yes')">Ja</button>
+      <button class="no" onclick="answer('no')">Nee</button>
+    </div>
   </div>
 
   <script>
@@ -83,7 +115,7 @@
 
     function showResult(result) {
       const app = document.getElementById("app");
-      app.innerHTML = `<div class="result"><p>${result}</p></div>`;
+      app.innerHTML = `<p class="result">${result}</p>`;
     }
   </script>
 </body>
